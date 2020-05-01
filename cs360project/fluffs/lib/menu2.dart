@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluffs/Data/addons.dart';
-import 'package:fluffs/cart_1.dart';
-import 'package:fluffs/extra.dart';
+import 'package:mr_fluffy_fluffs/Data/addons.dart';
+import 'package:mr_fluffy_fluffs/cart_1.dart';
+import 'package:mr_fluffy_fluffs/extra.dart';
 
 
 // The Main class for Menu Two that gets the data from the previous Menu Screen
