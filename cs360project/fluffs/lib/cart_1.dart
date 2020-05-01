@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluffs/profile.dart';
-import 'package:fluffs/extra.dart';
+import 'package:se7/profile.dart';
+import 'package:se7/extra.dart';
 
 Widget lines(wTH) {
   return Divider(
@@ -11,8 +11,6 @@ Widget lines(wTH) {
   );
 }
 
-// Main Class which uses multiple Row and Column Widgets to place them on their appropriate places (Aligned)
-
 class Cart extends StatefulWidget {
   @override
   _CartState createState() => _CartState();
@@ -21,7 +19,7 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
 
   int phone = 03214559559;
-  String address = "LUMS";
+  String address = "134 DHA Lahore";
   double delPrice = 40;
 
   @override
@@ -58,7 +56,7 @@ class _CartState extends State<Cart> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "My Cart (${bloc.allItems[bloc.allItems.length-1]['quan'] + bloc.allItems[bloc.allItems.length-1]['number']})",
+                "My Cart (${bloc.allItems.length})",
                 style: TextStyle(
                   color: Color(0xffbb5e1e),
                   fontSize: blockWidth * 5,
@@ -76,11 +74,9 @@ class _CartState extends State<Cart> {
               itemBuilder: (BuildContext context, int index) {
                 Map elem = bloc.allItems[index];
                 return CartMenu(
-                  index: elem,
                   name: elem['name'],
-                  price: elem['price']*elem['number'],
+                  price: elem['price'],
                   img: elem['img'],
-                  number: elem['number'],
                 );
               },
           ),
@@ -100,33 +96,23 @@ class _CartState extends State<Cart> {
   }
 }
 
-// This Class shows the different Items and can allow users to add or decrease their items
-
 class CartMenu extends StatefulWidget {
 
-  final name, img, index;
-  int price, number, quan;
+  final name, price, img;
 
-  // final cartStreamController = StreamController.broadcast();
-
-  CartMenu({Key key, this.index, this.name, this.price, this.img, this.number, this.quan}): super(key:key);
+  CartMenu({Key key, this.name, this.price, this.img}): super(key:key);
 
   @override
-
   _CartMenuState createState() => _CartMenuState();
-
 }
 
 class _CartMenuState extends State<CartMenu> {
-
   @override
   Widget build(BuildContext context) {
     var wTH = MediaQuery.of(context).size.width;
     var hTH = MediaQuery.of(context).size.height;
     var blockWidth = wTH / 100;
     var blockHeight = hTH / 100;
-    int n = widget.number;
-
 
     return Container(
       padding: EdgeInsets.fromLTRB(
@@ -173,15 +159,9 @@ class _CartMenuState extends State<CartMenu> {
                   child: FloatingActionButton(
                     onPressed: () {
                       setState(() {
-                        // bloc.updateItem("-");
-                          widget.number = bloc.updateDItem(widget.index);
-                          widget.price = bloc.updateDPrice(widget.index);
-                          quan--;
-                          Navigator.push(
-                              context, MaterialPageRoute(
-                            builder: (BuildContext context) => Cart(),
-                          ));
-                          // widget.number--;
+                        // if (number != 0){
+                        //   number--;
+                        // }
                       });
                     },
                     child: Icon(Icons.remove, color: Color(0xffbb5e1e), size: blockWidth * 3),
@@ -191,7 +171,7 @@ class _CartMenuState extends State<CartMenu> {
                 ),
               ),
               SizedBox(width: blockWidth * 0.05),
-              Text('${widget.number}', style: TextStyle(fontSize: blockWidth * 4)),
+              Text("1", style: TextStyle(fontSize: blockWidth * 4)),
               SizedBox(width: blockWidth * 0.05),
               Align(
                 alignment: Alignment.topRight,
@@ -200,25 +180,7 @@ class _CartMenuState extends State<CartMenu> {
                   child: FloatingActionButton(
                     onPressed: () {
                       setState(() {
-                        widget.number = bloc.updateAItem(widget.index);
-//                        widget.price = bloc.updateAPrice(widget.index);
-                        // bloc.allItems.forEach((f) => f['price'] + f['original']);
-                        int i = 0;
-                        bloc.allItems[i]['price'] = bloc.allItems[i]['price'] + bloc.allItems[i]['original'];
-                        quan++;
-                        Navigator.push(
-                            context, MaterialPageRoute(
-                          builder: (BuildContext context) => Cart(),
-                        ));
-//                         int p = widget.price;
-//                         int n = widget.number;
-//                         int x = (p~/(n-1));
-//                         widget.price = p + x;
-//
-//                         Navigator.push(
-//                             context, MaterialPageRoute(
-//                           builder: (BuildContext context) => Cart(),
-//                        ));
+                        // number++;
                       });
                     },
                     child: Icon(
@@ -240,13 +202,11 @@ class _CartMenuState extends State<CartMenu> {
   }
 }
 
-// This Class shows the prices which appear on the Screen
-
 class PriceMenu extends StatefulWidget {
 
-  final subTotal, delPrice,number;
+  final subTotal, delPrice;
 
-  PriceMenu({Key key, this.subTotal, this.delPrice, this.number}) : super(key:key);
+  PriceMenu({Key key, this.subTotal, this.delPrice}) : super(key:key);
 
   @override
   _PriceMenuState createState() => _PriceMenuState();
@@ -343,8 +303,6 @@ class _PriceMenuState extends State<PriceMenu> {
   }
 }
 
-// This Class shows Address and Phone Buttons
-
 class UserMenu extends StatefulWidget {
   
   final element, name;
@@ -405,7 +363,6 @@ class _UserMenuState extends State<UserMenu> {
   }
 }
 
-// This Class shows the Payment Option
 
 class UserMenuTwo extends StatefulWidget {
   
@@ -458,8 +415,6 @@ class _UserMenuTwoState extends State<UserMenuTwo> {
     );
   }
 }
-
-// This Class shows the Order Button (Place Order)
 
 class OrderButton extends StatefulWidget {
   @override
