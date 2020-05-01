@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fluffs/cart_1.dart';
-import 'package:fluffs/menu2.dart';
-import 'package:fluffs/profile.dart';
-import 'package:fluffs/sideBar.dart';
-import 'package:fluffs/Data/menuItems.dart';
-import 'package:fluffs/Data/temp_1.dart';
-import 'package:fluffs/extra.dart';
+import 'package:mr_fluffy_fluffs/cart_1.dart';
+import 'package:mr_fluffy_fluffs/menu2.dart';
+import 'package:mr_fluffy_fluffs/profile.dart';
+import 'package:mr_fluffy_fluffs/sideBar.dart';
+import 'package:mr_fluffy_fluffs/Data/menuItems.dart';
+import 'package:mr_fluffy_fluffs/Data/temp_1.dart';
+import 'package:mr_fluffy_fluffs/extra.dart';
 
 class Menu extends StatefulWidget {
   @override
